@@ -220,19 +220,21 @@ public class LinkedList {
         Node main_ptr = head;
         Node ref_ptr = head;
         int c = 0 ;
-        while (c < index){
-            ref_ptr = ref_ptr.next;
-            c++;
+        if (head != null) {
+            while (c < index){
+                ref_ptr = ref_ptr.next;
+                c++;
+            }
+            if(ref_ptr == null){
+                System.out.println("index is greater than length");
+                return;
+            }
+            while (ref_ptr != null){
+                main_ptr = main_ptr.next;
+                ref_ptr = ref_ptr.next;
+            }
+            System.out.println(main_ptr.data);
         }
-        if(ref_ptr == null){
-            System.out.println("index is greater than length");
-            return;
-        }
-        while (ref_ptr != null){
-            main_ptr = main_ptr.next;
-            ref_ptr = ref_ptr.next;
-        }
-        System.out.println(main_ptr.data);
     }
 
     public static void main(String[] args){
