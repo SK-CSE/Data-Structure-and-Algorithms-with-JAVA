@@ -149,12 +149,100 @@ public class LinkedList {
         return 1 + getCountRec(node.next);
     }
 
+    public boolean search(int data){
+        Node curr = head;
+        while(curr != null){
+            if(curr.data == data){
+                return true;
+            }
+            curr = curr.next;
+        }
+        return false;
+    }
+    public boolean searchRec(Node head, int data){
+        Node curr = head;
+        if(curr == null){
+            return false;
+        }
+
+        if(curr.data == data){
+            return true;
+        }
+
+        return searchRec(curr.next, data);
+    }
+
+    public int getNth(int index){
+        Node curr = head;
+        int currIdx = 0;
+        while (curr != null){
+            if(currIdx == index){
+                return curr.data;
+            }
+            currIdx++;
+            curr = curr.next;
+        }
+        assert (false);
+        return 0;
+    }
+
+    static int getNthRec(Node head, int index){
+        int c = 1;
+
+        if(index == 1){
+            return head.data;
+        }
+        return getNthRec(head.next, index - 1);
+    }
+
+    void printNthFromLast(int index){
+        int len = 0;
+        Node temp = head;
+        while (temp != null){
+            len++;
+            temp = temp.next;
+        }
+
+        if(len < index){
+            return;
+        }
+        temp = head;
+
+        // i = 1 and get the (len-index+1)th node from the beginning
+        for(int i = 1; i < len - index + 1; i++){
+            temp = temp.next;
+        }
+        System.out.println(temp.data);
+
+    }
+
+    void printNthFromLast2(int index){
+        Node main_ptr = head;
+        Node ref_ptr = head;
+        int c = 0 ;
+        while (c < index){
+            ref_ptr = ref_ptr.next;
+            c++;
+        }
+        if(ref_ptr == null){
+            System.out.println("index is greater than length");
+            return;
+        }
+        while (ref_ptr != null){
+            main_ptr = main_ptr.next;
+            ref_ptr = ref_ptr.next;
+        }
+        System.out.println(main_ptr.data);
+    }
+
     public static void main(String[] args){
         LinkedList ll = new LinkedList();
 
         ll.append(6);
         ll.push(7);
         ll.push(1);
+        ll.push(2);
+        ll.push(3);
         ll.append(4);
         ll.insertAfter(ll.head.next,8);
 
@@ -176,6 +264,17 @@ public class LinkedList {
 
         System.out.println("count : "+count);
         System.out.println("countRec : "+countRec);
+        System.out.println(ll.search(6));
+
+        System.out.println(ll.getNth(5));
+        System.out.println(ll.getNthRec(ll.head,5));
+        System.out.println("===========");
+        ll.printNthFromLast(2);
+        System.out.println("===========");
+        ll.printNthFromLast2(2);
+        System.out.println("===========");
+
+
 
     }
 }
