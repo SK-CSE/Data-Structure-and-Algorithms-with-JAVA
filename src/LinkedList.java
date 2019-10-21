@@ -237,6 +237,35 @@ public class LinkedList {
         }
     }
 
+    void printMiddle(){
+        Node curr = head;
+        int c = 0;
+        while(curr != null){
+            curr = curr.next;
+            c++;
+        }
+
+        curr = head;
+
+        for(int i = 0; i < c/2 ; i++){
+            curr = curr.next;
+        }
+        System.out.println("middle element11111 "+ curr.data);
+    }
+
+    void printMiddle2(){
+        Node  slow_ptr = head;
+        Node fast_ptr = head;
+
+        if(head != null){
+
+            while(fast_ptr != null && fast_ptr.next != null){
+                fast_ptr = fast_ptr.next.next;
+                slow_ptr = slow_ptr.next;
+            }
+            System.out.println("midle element "+ slow_ptr.data);
+        }
+    }
     public static void main(String[] args){
         LinkedList ll = new LinkedList();
 
@@ -275,6 +304,8 @@ public class LinkedList {
         System.out.println("===========");
         ll.printNthFromLast2(2);
         System.out.println("===========");
+        ll.printMiddle();
+        ll.printMiddle2();
 
 
 
