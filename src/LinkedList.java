@@ -1,3 +1,5 @@
+import java.util.HashSet;
+
 public class LinkedList {
     Node head;
 
@@ -266,6 +268,34 @@ public class LinkedList {
             System.out.println("midle element "+ slow_ptr.data);
         }
     }
+
+    static boolean detectLoop(Node n){
+        HashSet s = new HashSet<Node>();
+        while (n != null){
+            if(s.contains(n)){
+                return true;
+            }
+            s.add(n);
+            n = n.next;
+        }
+        return false;
+    }
+
+     boolean detectLoop2(Node n){
+        Node fast_ptr = head;
+        Node slow_ptr = head;
+        while (fast_ptr != null && fast_ptr.next != null && slow_ptr != null){
+            fast_ptr = fast_ptr.next.next;
+            slow_ptr = slow_ptr.next;
+
+            if(slow_ptr == fast_ptr){
+                System.out.println("loop detected");
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static void main(String[] args){
         LinkedList ll = new LinkedList();
 
