@@ -289,7 +289,7 @@ public class LinkedList {
             slow_ptr = slow_ptr.next;
 
             if(slow_ptr == fast_ptr){
-                System.out.println("loop detected");
+                System.out.println("loop detected..!");
                 return true;
             }
         }
