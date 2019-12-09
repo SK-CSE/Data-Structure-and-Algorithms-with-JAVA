@@ -296,6 +296,24 @@ public class LinkedList {
         return false;
     }
 
+    static int countNodesInLoop(Node n){
+        Node fast_ptr = n, slow_ptr = n;
+        int count = 1;
+
+        while (fast_ptr != null && fast_ptr.next != null && slow_ptr != null){
+            fast_ptr = fast_ptr.next.next;
+            slow_ptr = slow_ptr.next;
+            if(slow_ptr == fast_ptr){
+                Node temp = slow_ptr;
+                while(temp.next != n){
+                    count++;
+                    temp = temp.next;
+                }
+            }
+        }
+        return count;
+    }
+
     public static void main(String[] args){
         LinkedList ll = new LinkedList();
 
