@@ -335,7 +335,7 @@ public class LinkedList {
         return  result;
     }
 
-    void removeDuplicates(){
+    void removeDuplicatesFromSortedLL(){
         Node curr = head;
         while(curr != null){
             Node temp = curr;
@@ -346,7 +346,7 @@ public class LinkedList {
             curr = curr.next;
         }
     }
-    static Node removeDuplicates2(Node n){
+    static Node removeDuplicatesFromSortedLL2(Node n){
 //        temp to store pointer that need to be free
         Node temp;
         if(n == null){
@@ -356,12 +356,27 @@ public class LinkedList {
             if(n.data == n.next.data){
                 temp = n.next;
                 n.next = n.next.next;
-                removeDuplicates2(n);
+                removeDuplicatesFromSortedLL2(n);
             }else{
-                removeDuplicates2(n.next);
+                removeDuplicatesFromSortedLL2(n.next);
             }
         }
         return n;
+    }
+
+    void removeDuplicatesFromUnsortedLL(){
+        Node curr = head;
+        Node prev = null;
+        HashSet<Integer> s = new HashSet<Integer>();
+        while (curr != null){
+            if(s.contains(curr.data)){
+                prev.next = curr.next;
+            }else{
+                s.add(curr.data);
+                prev = curr;
+            }
+            curr = curr.next;
+        }
     }
 
     public static void main(String[] args){
