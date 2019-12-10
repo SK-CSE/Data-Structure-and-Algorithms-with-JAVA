@@ -346,6 +346,23 @@ public class LinkedList {
             curr = curr.next;
         }
     }
+    static Node removeDuplicates2(Node n){
+//        temp to store pointer that need to be free
+        Node temp;
+        if(n == null){
+            return null;
+        }
+        if(n.next!= null){
+            if(n.data == n.next.data){
+                temp = n.next;
+                n.next = n.next.next;
+                removeDuplicates2(n);
+            }else{
+                removeDuplicates2(n.next);
+            }
+        }
+        return n;
+    }
 
     public static void main(String[] args){
         LinkedList ll = new LinkedList();
