@@ -1,4 +1,5 @@
 import java.util.HashSet;
+import java.util.Stack;
 
 public class LinkedList {
     Node head;
@@ -312,6 +313,38 @@ public class LinkedList {
             }
         }
         return count;
+    }
+
+    static boolean isPalindrome(Node n){
+        Node temp = n;
+        boolean result = true;
+        Stack<Integer> s = new Stack<Integer>();
+        while (temp != null){
+            s.push(temp.data);
+            temp = temp.next;
+        }
+
+        while (n != null){
+            int i = s.pop();
+            if(i != n.data){
+                result = false;
+                break;
+            }
+            n = n.next;
+        }
+        return  result;
+    }
+
+    void removeDuplicates(){
+        Node curr = head;
+        while(curr != null){
+            Node temp = curr;
+            while(temp != null && temp.data == curr.data){
+                temp = temp.next;
+            }
+            curr.next = temp;
+            curr = curr.next;
+        }
     }
 
     public static void main(String[] args){
