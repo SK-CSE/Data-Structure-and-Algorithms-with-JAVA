@@ -379,6 +379,18 @@ public class LinkedList {
         }
     }
 
+    void moveToFront(){
+        Node curr = head;
+        Node prev = null;
+        while(curr.next != null){
+            prev = curr;
+            curr = curr.next;
+        }
+        prev.next = null;
+        curr.next = head;
+        head = curr;
+    }
+
     public static void main(String[] args){
         LinkedList ll = new LinkedList();
 
